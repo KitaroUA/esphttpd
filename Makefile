@@ -7,12 +7,64 @@
 #OUTPUT_TYPE=combined
 OUTPUT_TYPE=ota
 
-#SPI flash size, in K
-ESP_SPI_FLASH_SIZE_K=1024
+#SPI flash size, in K 512(not working), 1024, 2048, 4098, 
+ESP_SPI_FLASH_SIZE_K=4096
+# Bin size for OTA, select from 256K(no working), 512K, 1024K
+ESP_BIN_SIZE_K = 1024
 #0: QIO, 1: QOUT, 2: DIO, 3: DOUT
 ESP_FLASH_MODE=0
 #0: 40MHz, 1: 26MHz, 2: 20MHz, 15: 80MHz
 ESP_FLASH_FREQ_DIV=0
+
+
+ESPIP = 192.168.103.53
+
+
+# user1.bin address
+BIN_ADDRESS_1 = 0x01000
+
+# user2.bin address for SPI size
+# 512K            (256K+256K)   = 0x41000
+# 1024K           (512K+512K)   = 0x81000
+# 2048K,4096K,... (512K+512K)   = 0x81000
+# 2048K,4096K,... (1024K+1024K) = 0x101000
+ifeq 	  ("$(ESP_BIN_SIZE_K)","512")
+	BIN_ADDRESS_2 				= 0x081000
+else ifeq ("$(ESP_BIN_SIZE_K)","1024")
+    BIN_ADDRESS_2 				= 0x101000
+endif
+
+
+BOOTLOADER_ADDRESS = 0x00000
+
+# esp_init_data_default.bin address 
+# 512K   = 0x7C000 
+# 1024K  = 0xFC000 
+# 2048K  = 0x1FC000 
+# 4096K  = 0x3FC000 
+# 8192K  = 0x7FC000 
+# 16384K = 0xFFC000
+
+ifeq 	  ("$(ESP_SPI_FLASH_SIZE_K)","512")
+	ESP_INIT_DATA_DEFAULT_ADDR 			= 0x07c000
+else ifeq ("$(ESP_SPI_FLASH_SIZE_K)","1024")
+    ESP_INIT_DATA_DEFAULT_ADDR 			= 0x0fc000
+else ifeq ("$(ESP_SPI_FLASH_SIZE_K)","2048")
+    ESP_INIT_DATA_DEFAULT_ADDR 			= 0x1fc000
+else ifeq ("$(ESP_SPI_FLASH_SIZE_K)","4096")
+    ESP_INIT_DATA_DEFAULT_ADDR 			= 0x3fc000
+else ifeq ("$(ESP_SPI_FLASH_SIZE_K)","8192")
+    ESP_INIT_DATA_DEFAULT_ADDR 			= 0x7fc000
+else ifeq ("$(ESP_SPI_FLASH_SIZE_K)","16384")
+    ESP_INIT_DATA_DEFAULT_ADDR 			= 0xffc000
+endif
+
+BUILD_DATETIME:=$(shell lang=uk_UA.UTF-8 date "+%d-%B-%Y, %H:%M:%S")
+
+
+
+
+
 
 
 ifeq ("$(OUTPUT_TYPE)","separate")
@@ -31,11 +83,13 @@ FW_BASE		= firmware
 XTENSA_TOOLS_ROOT ?= 
 
 # base directory of the ESP8266 SDK package, absolute
-SDK_BASE	?= /opt/Espressif/ESP8266_SDK
+#SDK_BASE	?= /opt/Espressif/ESP8266_SDK
+
+SDK_BASE	?= /home/master/esp8266/esp-open-sdk/sdk22x
 
 # Opensdk patches stdint.h when compiled with an internal SDK. If you run into compile problems pertaining to
 # redefinition of int types, try setting this to 'yes'.
-USE_OPENSDK?=no
+USE_OPENSDK?=yes
 
 #Esptool.py path and port
 ESPTOOL		?= esptool.py
@@ -62,7 +116,7 @@ LIBS += esphttpd
 # compiler flags using during compilation of source files
 CFLAGS		= -Os -ggdb -std=gnu99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions \
 		-nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH \
-		-Wno-address
+		-Wno-address -Wformat
 
 # linker flags used to generate the main object file
 LDFLAGS		= -nostdlib -Wl,--no-check-sections -u call_user_start -Wl,-static
@@ -132,6 +186,11 @@ endif
 
 ifeq ("$(OUTPUT_TYPE)","ota")
 CFLAGS += -DOTA_FLASH_SIZE_K=$(ESP_SPI_FLASH_SIZE_K)
+CFLAGS += -DBIN_ADDRESS_1=$(BIN_ADDRESS_1)
+CFLAGS += -DBIN_ADDRESS_2=$(BIN_ADDRESS_2)
+CFLAGS += -DESP_BIN_SIZE_K=$(ESP_BIN_SIZE_K)
+CFLAGS += -DBUILD_DATETIME=\""$(BUILD_DATETIME)"\"
+
 endif
 
 
@@ -151,8 +210,10 @@ LIBS		:= $(addprefix -l,$(LIBS))
 ifeq ("$(LD_SCRIPT_USR1)", "")
 LD_SCRIPT	:= $(addprefix -T$(SDK_BASE)/$(SDK_LDDIR)/,$(LD_SCRIPT))
 else
-LD_SCRIPT_USR1	:= $(addprefix -T$(SDK_BASE)/$(SDK_LDDIR)/,$(LD_SCRIPT_USR1))
-LD_SCRIPT_USR2	:= $(addprefix -T$(SDK_BASE)/$(SDK_LDDIR)/,$(LD_SCRIPT_USR2))
+	ifneq ("$(OUTPUT_TYPE)","ota")
+	LD_SCRIPT_USR1	:= $(addprefix -T$(SDK_BASE)/$(SDK_LDDIR)/,$(LD_SCRIPT_USR1))
+	LD_SCRIPT_USR2	:= $(addprefix -T$(SDK_BASE)/$(SDK_LDDIR)/,$(LD_SCRIPT_USR2))
+	endif
 endif
 INCDIR	:= $(addprefix -I,$(SRC_DIR))
 EXTRA_INCDIR	:= $(addprefix -I,$(EXTRA_INCDIR))
@@ -161,7 +222,15 @@ MODULE_INCDIR	:= $(addsuffix /include,$(INCDIR))
 ESP_FLASH_SIZE_IX=$(call maplookup,$(ESP_SPI_FLASH_SIZE_K),512:0 1024:2 2048:5 4096:6)
 ESPTOOL_FREQ=$(call maplookup,$(ESP_FLASH_FREQ_DIV),0:40m 1:26m 2:20m 0xf:80m 15:80m)
 ESPTOOL_MODE=$(call maplookup,$(ESP_FLASH_MODE),0:qio 1:qout 2:dio 3:dout)
+ifeq ("$(OUTPUT_TYPE)","ota")
+	ifeq ("$(ESP_BIN_SIZE_K)","1024")
+	ESPTOOL_SIZE=$(call maplookup,$(ESP_SPI_FLASH_SIZE_K),2048:2MB-c1 4096:4MB-c1)
+	else
+	ESPTOOL_SIZE=$(call maplookup,$(ESP_SPI_FLASH_SIZE_K),1024:1MB 2048:2MB 4096:4MB)
+	endif
+else
 ESPTOOL_SIZE=$(call maplookup,$(ESP_SPI_FLASH_SIZE_K),512:4m 256:2m 1024:8m 2048:16m 4096:322m-c1)
+endif
 
 ESPTOOL_OPTS=--port $(ESPPORT) --baud $(ESPBAUD)
 ESPTOOL_FLASHDEF=--flash_freq $(ESPTOOL_FREQ) --flash_mode $(ESPTOOL_MODE) --flash_size $(ESPTOOL_SIZE)

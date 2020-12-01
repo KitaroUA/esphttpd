@@ -1,0 +1,140 @@
+Makefile:253: update target 'libesphttpd' due to: libesphttpd/Makefile
+make -C libesphttpd USE_OPENSDK=no
+make[1]: Entering directory '/home/master/esp8266/workspace/esphttpd/libesphttpd'
+Makefile:220: update target 'build/espfs/espfs.o' due to: espfs/espfs.c
+echo "CC espfs/espfs.c"
+CC espfs/espfs.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c espfs/espfs.c -o build/espfs/espfs.o
+Makefile:220: update target 'build/espfs/heatshrink_decoder.o' due to: espfs/heatshrink_decoder.c
+echo "CC espfs/heatshrink_decoder.c"
+CC espfs/heatshrink_decoder.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c espfs/heatshrink_decoder.c -o build/espfs/heatshrink_decoder.o
+Makefile:220: update target 'build/core/httpd-nonos.o' due to: core/httpd-nonos.c
+echo "CC core/httpd-nonos.c"
+CC core/httpd-nonos.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c core/httpd-nonos.c -o build/core/httpd-nonos.o
+Makefile:220: update target 'build/core/httpd-freertos.o' due to: core/httpd-freertos.c
+echo "CC core/httpd-freertos.c"
+CC core/httpd-freertos.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c core/httpd-freertos.c -o build/core/httpd-freertos.o
+Makefile:220: update target 'build/core/sha1.o' due to: core/sha1.c
+echo "CC core/sha1.c"
+CC core/sha1.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c core/sha1.c -o build/core/sha1.o
+Makefile:220: update target 'build/core/httpdespfs.o' due to: core/httpdespfs.c
+echo "CC core/httpdespfs.c"
+CC core/httpdespfs.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c core/httpdespfs.c -o build/core/httpdespfs.o
+Makefile:220: update target 'build/core/auth.o' due to: core/auth.c
+echo "CC core/auth.c"
+CC core/auth.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c core/auth.c -o build/core/auth.o
+Makefile:220: update target 'build/core/base64.o' due to: core/base64.c
+echo "CC core/base64.c"
+CC core/base64.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c core/base64.c -o build/core/base64.o
+Makefile:220: update target 'build/core/httpd.o' due to: core/httpd.c
+echo "CC core/httpd.c"
+CC core/httpd.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c core/httpd.c -o build/core/httpd.o
+Makefile:220: update target 'build/util/cgiwebsocket.o' due to: util/cgiwebsocket.c
+echo "CC util/cgiwebsocket.c"
+CC util/cgiwebsocket.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c util/cgiwebsocket.c -o build/util/cgiwebsocket.o
+Makefile:220: update target 'build/util/cgiflash.o' due to: util/cgiflash.c
+echo "CC util/cgiflash.c"
+CC util/cgiflash.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c util/cgiflash.c -o build/util/cgiflash.o
+Makefile:220: update target 'build/util/captdns.o' due to: util/captdns.c
+echo "CC util/captdns.c"
+CC util/captdns.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c util/captdns.c -o build/util/captdns.o
+Makefile:220: update target 'build/util/cgiwifi.o' due to: util/cgiwifi.c
+echo "CC util/cgiwifi.c"
+CC util/cgiwifi.c
+xtensa-lx106-elf-gcc -Iespfs -Icore -Iutil -Iespfs/include -Icore/include -Iutil/include -I./include -I. -Ilib/heatshrink/ -I/include -Os -ggdb -std=c99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -DHTTPD_MAX_CONNECTIONS=4 -DHTTPD_STACKSIZE=2048  -D_STDINT_H -DESPFS_HEATSHRINK -DHTTPD_WEBSOCKETS  -c util/cgiwifi.c -o build/util/cgiwifi.o
+Makefile:175: update target 'libesphttpd.a' due to: build/espfs build/core build/util submodules build/espfs/espfs.o build/espfs/heatshrink_decoder.o build/core/httpd-nonos.o build/core/httpd-freertos.o build/core/sha1.o build/core/httpdespfs.o build/core/auth.o build/core/base64.o build/core/httpd.o build/util/cgiwebsocket.o build/util/cgiflash.o build/util/captdns.o build/util/cgiwifi.o
+echo "AR libesphttpd.a"
+AR libesphttpd.a
+xtensa-lx106-elf-ar cru libesphttpd.a build/espfs/espfs.o build/espfs/heatshrink_decoder.o build/core/httpd-nonos.o build/core/httpd-freertos.o build/core/sha1.o build/core/httpdespfs.o build/core/auth.o build/core/base64.o build/core/httpd.o build/util/cgiwebsocket.o build/util/cgiflash.o build/util/captdns.o build/util/cgiwifi.o
+Makefile:208: update target 'espfs/mkespfsimage/mkespfsimage' due to: espfs/mkespfsimage/
+make -C espfs/mkespfsimage USE_HEATSHRINK="yes" GZIP_COMPRESSION="no"
+make[2]: Entering directory '/home/master/esp8266/workspace/esphttpd/libesphttpd/espfs/mkespfsimage'
+<builtin>: update target 'main.o' due to: main.c
+cc -I../../lib/heatshrink -I../../include -I.. -std=gnu99 -DESPFS_HEATSHRINK   -c -o main.o main.c
+<builtin>: update target 'heatshrink_encoder.o' due to: heatshrink_encoder.c
+cc -I../../lib/heatshrink -I../../include -I.. -std=gnu99 -DESPFS_HEATSHRINK   -c -o heatshrink_encoder.o heatshrink_encoder.c
+Makefile:20: update target 'mkespfsimage' due to: main.o heatshrink_encoder.o
+cc -o mkespfsimage main.o heatshrink_encoder.o
+make[2]: Leaving directory '/home/master/esp8266/workspace/esphttpd/libesphttpd/espfs/mkespfsimage'
+Makefile:198: update target 'webpages.espfs' due to: espfs/mkespfsimage/mkespfsimage
+cd ../html; find . -not -iname '*.swp' | /home/master/esp8266/workspace/esphttpd/libesphttpd//espfs/mkespfsimage/mkespfsimage > /home/master/esp8266/workspace/esphttpd/libesphttpd//webpages.espfs; cd ..
+Makefile:202: update target 'libwebpages-espfs.a' due to: webpages.espfs
+xtensa-lx106-elf-objcopy -I binary -O elf32-xtensa-le -B xtensa --rename-section .data=.irom0.literal \
+	webpages.espfs build/webpages.espfs.o.tmp
+xtensa-lx106-elf-gcc -nostdlib -Wl,-r build/webpages.espfs.o.tmp -o build/webpages.espfs.o -Wl,-T webpages.espfs.ld
+xtensa-lx106-elf-ar cru libwebpages-espfs.a build/webpages.espfs.o
+make[1]: Leaving directory '/home/master/esp8266/workspace/esphttpd/libesphttpd'
+Makefile:272: update target 'build/user/cgi-test.o' due to: user/cgi-test.c
+echo "CC user/cgi-test.c"
+CC user/cgi-test.c
+xtensa-lx106-elf-gcc -Iuser -Iuser/include -Iinclude -Ilibesphttpd/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include/json -Os -ggdb -std=gnu99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -Wformat -D_STDINT_H -DOTA_FLASH_SIZE_K=2048 -DBIN_ADDRESS_1=0x01000 -DBIN_ADDRESS_2=0x81000 -DESP_BIN_SIZE_K=1024 -DOTA_TAGNAME=\""generic"\"  -c user/cgi-test.c -o build/user/cgi-test.o
+Makefile:272: update target 'build/user/stdout.o' due to: user/stdout.c
+echo "CC user/stdout.c"
+CC user/stdout.c
+xtensa-lx106-elf-gcc -Iuser -Iuser/include -Iinclude -Ilibesphttpd/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include/json -Os -ggdb -std=gnu99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -Wformat -D_STDINT_H -DOTA_FLASH_SIZE_K=2048 -DBIN_ADDRESS_1=0x01000 -DBIN_ADDRESS_2=0x81000 -DESP_BIN_SIZE_K=1024 -DOTA_TAGNAME=\""generic"\"  -c user/stdout.c -o build/user/stdout.o
+Makefile:272: update target 'build/user/io.o' due to: user/io.c
+echo "CC user/io.c"
+CC user/io.c
+xtensa-lx106-elf-gcc -Iuser -Iuser/include -Iinclude -Ilibesphttpd/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include/json -Os -ggdb -std=gnu99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -Wformat -D_STDINT_H -DOTA_FLASH_SIZE_K=2048 -DBIN_ADDRESS_1=0x01000 -DBIN_ADDRESS_2=0x81000 -DESP_BIN_SIZE_K=1024 -DOTA_TAGNAME=\""generic"\"  -c user/io.c -o build/user/io.o
+Makefile:272: update target 'build/user/cgi.o' due to: user/cgi.c
+echo "CC user/cgi.c"
+CC user/cgi.c
+xtensa-lx106-elf-gcc -Iuser -Iuser/include -Iinclude -Ilibesphttpd/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include/json -Os -ggdb -std=gnu99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -Wformat -D_STDINT_H -DOTA_FLASH_SIZE_K=2048 -DBIN_ADDRESS_1=0x01000 -DBIN_ADDRESS_2=0x81000 -DESP_BIN_SIZE_K=1024 -DOTA_TAGNAME=\""generic"\"  -c user/cgi.c -o build/user/cgi.o
+Makefile:272: update target 'build/user/user_main.o' due to: user/user_main.c
+echo "CC user/user_main.c"
+CC user/user_main.c
+xtensa-lx106-elf-gcc -Iuser -Iuser/include -Iinclude -Ilibesphttpd/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include -I/home/master/esp8266/esp-open-sdk/sdk22x/include/json -Os -ggdb -std=gnu99 -Werror -Wpointer-arith -Wundef -Wall -Wl,-EL -fno-inline-functions -nostdlib -mlongcalls -mtext-section-literals  -D__ets__ -DICACHE_FLASH -Wno-address -Wformat -D_STDINT_H -DOTA_FLASH_SIZE_K=2048 -DBIN_ADDRESS_1=0x01000 -DBIN_ADDRESS_2=0x81000 -DESP_BIN_SIZE_K=1024 -DOTA_TAGNAME=\""generic"\"  -c user/user_main.c -o build/user/user_main.o
+Makefile:256: update target 'build/httpd_app.a' due to: libesphttpd build/user/cgi-test.o build/user/stdout.o build/user/io.o build/user/cgi.o build/user/user_main.o
+echo "AR build/httpd_app.a"
+AR build/httpd_app.a
+xtensa-lx106-elf-ar cru build/httpd_app.a build/user/cgi-test.o build/user/stdout.o build/user/io.o build/user/cgi.o build/user/user_main.o 
+Makefile.ota:80: update target 'build/httpd.user1.out' due to: build/httpd_app.a
+echo LD build/httpd.user1.out
+LD build/httpd.user1.out
+xtensa-lx106-elf-gcc -Llibesphttpd -L/home/master/esp8266/esp-open-sdk/sdk22x/lib -T LD/1024K.app1.ld -nostdlib -Wl,--no-check-sections -u call_user_start -Wl,-static -Wl,--start-group -lc -lgcc -lhal -lphy -lpp -lnet80211 -lwpa -lmain -llwip -lcrypto -lesphttpd -lwebpages-espfs build/httpd_app.a -Wl,--end-group -o build/httpd.user1.out
+Makefile.ota:81: update target 'build/httpd.user2.out' due to: build/httpd_app.a
+echo LD build/httpd.user2.out
+LD build/httpd.user2.out
+xtensa-lx106-elf-gcc -Llibesphttpd -L/home/master/esp8266/esp-open-sdk/sdk22x/lib -T LD/1024K.app2.ld -nostdlib -Wl,--no-check-sections -u call_user_start -Wl,-static -Wl,--start-group -lc -lgcc -lhal -lphy -lpp -lnet80211 -lwpa -lmain -llwip -lcrypto -lesphttpd -lwebpages-espfs build/httpd_app.a -Wl,--end-group -o build/httpd.user2.out
+Makefile.ota:80: update target 'build/httpd.user1.bin' due to: build/httpd.user1.out
+echo APPGEN build/httpd.user1.bin
+APPGEN build/httpd.user1.bin
+xtensa-lx106-elf-objcopy --only-section .text -O binary build/httpd.user1.out build/eagle.app.v6.text.bin
+xtensa-lx106-elf-objcopy --only-section .data -O binary build/httpd.user1.out build/eagle.app.v6.data.bin
+xtensa-lx106-elf-objcopy --only-section .rodata -O binary build/httpd.user1.out build/eagle.app.v6.rodata.bin
+xtensa-lx106-elf-objcopy --only-section .irom0.text -O binary build/httpd.user1.out build/eagle.app.v6.irom0text.bin
+cd build; COMPILE=gcc PATH=:/home/master/esp8266/esp-open-sdk/xtensa-lx106-elf/bin:/home/master/esp8266/esp-open-sdk/xtensa-lx106-elf/bin:/home/master/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin python /home/master/esp8266/esp-open-sdk/sdk22x/tools/gen_appbin.py httpd.user1.out 2 0 0 5 1
+-1428071889
+1428071888
+rm -f eagle.app.v6.*.bin
+mv build/eagle.app.flash.bin build/httpd.user1.bin
+echo "** user1.bin uses $(stat -c '%s' build/httpd.user1.bin) bytes of"  "available"
+** user1.bin uses 385876 bytes of available
+Makefile.ota:81: update target 'build/httpd.user2.bin' due to: build/httpd.user2.out
+echo APPGEN build/httpd.user2.bin
+APPGEN build/httpd.user2.bin
+xtensa-lx106-elf-objcopy --only-section .text -O binary build/httpd.user2.out build/eagle.app.v6.text.bin
+xtensa-lx106-elf-objcopy --only-section .data -O binary build/httpd.user2.out build/eagle.app.v6.data.bin
+xtensa-lx106-elf-objcopy --only-section .rodata -O binary build/httpd.user2.out build/eagle.app.v6.rodata.bin
+xtensa-lx106-elf-objcopy --only-section .irom0.text -O binary build/httpd.user2.out build/eagle.app.v6.irom0text.bin
+cd build; COMPILE=gcc PATH=:/home/master/esp8266/esp-open-sdk/xtensa-lx106-elf/bin:/home/master/esp8266/esp-open-sdk/xtensa-lx106-elf/bin:/home/master/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin python /home/master/esp8266/esp-open-sdk/sdk22x/tools/gen_appbin.py httpd.user2.out 2 0 0 5 2
+1175606316
+1175606317
+rm -f eagle.app.v6.*.bin
+mv build/eagle.app.flash.bin build/httpd.user2.bin
+echo "** user2.bin uses $(stat -c '%s' build/httpd.user2.bin) bytes of"  "available"
+** user2.bin uses 385876 bytes of available
+Makefile.ota:114: update target 'firmware' due to: build/httpd.user1.bin build/httpd.user2.bin libesphttpd/mkupgimg/mkupgimg
+libesphttpd/mkupgimg/mkupgimg build/httpd.user1.bin build/httpd.user2.bin "generic" build/httpd.ota
+Header: 40 bytes, user1: 385876 bytes, user2: 385876 bytes.

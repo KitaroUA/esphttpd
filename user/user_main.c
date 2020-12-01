@@ -28,6 +28,24 @@ some pictures of cats.
 #include "cgiwebsocket.h"
 #include "cgi-test.h"
 
+#include "user_config.h"
+
+const char * const flash_size_map_names[] = {
+	    "FLASH_SIZE_4Mbits(512k)_MAP_(256K+256K)",  /**<  Flash size : 4Mbits. Map : 256KBytes + 256KBytes */
+	    "FLASH_SIZE_2Mbits(256K)",                  /**<  Flash size : 2Mbits. Map : 256KBytes */
+	    "FLASH_SIZE_8Mbits(1024K)_MAP_(512K+512K)",      /**<  Flash size : 8Mbits. Map : 512KBytes + 512KBytes */
+	    "FLASH_SIZE_16Mbits(2048K)_MAP_(512K+512K)",     /**<  Flash size : 16Mbits. Map : 512KBytes + 512KBytes */
+	    "FLASH_SIZE_32Mbits(4096K)_MAP_(512K+512K)",     /**<  Flash size : 32Mbits. Map : 512KBytes + 512KBytes */
+	    "FLASH_SIZE_16Mbits(2048K)_MAP_(1024K+1024K)",   /**<  Flash size : 16Mbits. Map : 1024KBytes + 1024KBytes */
+	    "FLASH_SIZE_32Mbits(4096K)_MAP_(1024K+1024K)",    /**<  Flash size : 32Mbits. Map : 1024KBytes + 1024KBytes */
+	    "FLASH_SIZE_32Mbits(4096K)_MAP_(2048K+2048K)",    /**<  attention: don't support now ,just compatible for nodemcu;
+	                                           Flash size : 32Mbits. Map : 2048KBytes + 2048KBytes */
+	    "FLASH_SIZE_64Mbits(8192K)_MAP_(1024K+1024K)",     /**<  Flash size : 64Mbits. Map : 1024KBytes + 1024KBytes */
+	    "FLASH_SIZE_128Mbits(16384K)_MAP_(1024K+1024K)"     /**<  Flash size : 128Mbits. Map : 1024KBytes + 1024KBytes */
+
+};
+
+
 //The example can print out the heap use every 3 seconds. You can use this to catch memory leaks.
 //#define SHOW_HEAP_USE
 
@@ -100,9 +118,12 @@ CgiUploadFlashDef uploadParams={
 #ifdef OTA_FLASH_SIZE_K
 CgiUploadFlashDef uploadParams={
 	.type=CGIFLASH_TYPE_FW,
-	.fw1Pos=0x1000,
-	.fw2Pos=((OTA_FLASH_SIZE_K*1024)/2)+0x1000,
-	.fwSize=((OTA_FLASH_SIZE_K*1024)/2)-0x1000,
+//	.fw1Pos=0x01000,
+//	.fw2Pos=((OTA_FLASH_SIZE_K*1024)/2)+0x1000,
+//	.fwSize=((OTA_FLASH_SIZE_K*1024)/2)-0x1000,
+	.fw1Pos=BIN_ADDRESS_1,
+	.fw2Pos=BIN_ADDRESS_2,
+	.fwSize=ESP_BIN_SIZE_K-0x1000,
 	.tagName=OTA_TAGNAME
 };
 #define INCLUDE_FLASH_FNS
@@ -167,7 +188,9 @@ static void ICACHE_FLASH_ATTR prHeapTimerCb(void *arg) {
 void user_init(void) {
 	stdoutInit();
 	ioInit();
+
 	captdnsInit();
+//	uart_init(BIT_RATE_115200, BIT_RATE_115200);
 
 	// 0x40200000 is the base address for spi flash memory mapping, ESPFS_POS is the position
 	// where image is written in flash that is defined in Makefile.
@@ -186,6 +209,27 @@ void user_init(void) {
 	os_timer_setfn(&websockTimer, websockTimerCb, NULL);
 	os_timer_arm(&websockTimer, 1000, 1);
 	os_printf("\nReady\n");
+//    char buf[50];
+	INFO("\r\n build timestamp: %s \r\n", BUILD_DATETIME);
+
+	INFO("\n##########################\r\n");
+	INFO(  "__________________________\r\n\n");
+	INFO("    Chip Id: %08X \r\n", system_get_chip_id());
+	INFO("    SDK version: %s\r\n", system_get_sdk_version());
+	INFO("    Boot version: %d\r\n",system_get_boot_version());
+	INFO("    Boot mode: %d\r\n",system_get_boot_mode());
+	INFO("__________________________\r\n\n");
+	INFO("    Flash chip Id: %08X (for example: Id=001640E0  Manuf=E0, Device=4016 (swap bytes))\r\n", spi_flash_get_id());
+	INFO("    Start address info of the current running user binary is 0x%x\r\n", system_get_userbin_addr());
+	INFO("    Flash size map: %s\r\n",flash_size_map_names[system_get_flash_size_map()]);
+
+
+	INFO("__________________________\r\n");
+	INFO("##########################\r\n");
+
+
+
+
 }
 
 void user_rf_pre_init() {
@@ -194,6 +238,7 @@ void user_rf_pre_init() {
 
 
 //Sdk 2.0.0 needs extra sector to store rf cal stuff. Place that at the end of the flash.
+
 uint32 ICACHE_FLASH_ATTR
 user_rf_cal_sector_set(void)
 {
@@ -226,4 +271,5 @@ user_rf_cal_sector_set(void)
 
 	return rf_cal_sec;
 }
+
 

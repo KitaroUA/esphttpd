@@ -71,6 +71,13 @@ int ICACHE_FLASH_ATTR tplCounter(HttpdConnData *connData, char *token, void **ar
 		hitCounter++;
 		os_sprintf(buff, "%ld", hitCounter);
 	}
+
+	if (os_strcmp(token, "timestamp")==0) {
+		os_sprintf(buff,"Build timestamp = %s, Addr: 0x%x, Flash size map: %s", BUILD_DATETIME, system_get_userbin_addr(), flash_size_map_names[system_get_flash_size_map()]);
+//		os_sprintf(buff, "%c", BUILD_DATETIME);
+	}
+
+
 	httpdSend(connData, buff, -1);
 	return HTTPD_CGI_DONE;
 }
