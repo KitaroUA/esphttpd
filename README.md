@@ -1,3 +1,6 @@
+Forked and modified for my own purpose, checked OTA for 1,2,4 MB with 512K or 1024K bin
+
+
 # esp-httpd README #
 
 This is the demonstration project for the small but powerful libesphttpd webserver 
